@@ -53,13 +53,13 @@ class App extends Component {
 
     render() {
         return (
-            <body>
+            <div>
                 <Nav />
                 <Switch>
                 <Route exact path={'/home'} component={ () => <Register/>} />
                 <Route exact path={'/sitters'} component={() => <Sittersindex />} />
                 </Switch>
-            </body>
+            </div>
         )
     }
 }

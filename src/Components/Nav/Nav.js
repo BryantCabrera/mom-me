@@ -16,12 +16,13 @@ export default class Nav extends Component {
           name='home'
           active={activeItem === 'home'}
           onClick={this.handleItemClick}
+          href={`${process.env.REACT_APP_API_URL}/home`}
         >
-        <Link to='/home'>Home</Link>
+        {/* <Link to='/home'>Home</Link> */}
         </Menu.Item>
 
-        <Menu.Item name='sitters' active={activeItem === 'sitters'} onClick={this.handleItemClick}>
-        <Link to='/sitters'>Sitters</Link>
+        <Menu.Item to='/sitters' name='sitters' active={activeItem === 'sitters'} onClick={this.handleItemClick}>
+        {/* <Link to='/sitters'>Sitters</Link> */}
         </Menu.Item>
 
         <Menu.Item

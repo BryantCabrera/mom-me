@@ -11,13 +11,13 @@ const CardExampleCard = () => (
       </Card.Meta>
       <Card.Description>Matthew is a musician living in Nashville.</Card.Description>
     </Card.Content>
-    <Card.Content extra>
-      <a>
+    {/* <Card.Content extra>
+      <a href="">
         <Icon name='user' />
         22 Friends
       </a>
-    </Card.Content>
+    </Card.Content> */}
   </Card>
 )
 
-export default CardExampleCard
+export default CardExampleCard;
