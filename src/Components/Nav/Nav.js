@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default class Nav extends Component {
   state = {}
@@ -12,15 +13,15 @@ export default class Nav extends Component {
     return (
       <Menu>
         <Menu.Item
-          name='editorials'
-          active={activeItem === 'editorials'}
+          name='home'
+          active={activeItem === 'home'}
           onClick={this.handleItemClick}
         >
-          Editorials
+        <Link to='/home'>Home</Link>
         </Menu.Item>
 
-        <Menu.Item name='reviews' active={activeItem === 'reviews'} onClick={this.handleItemClick}>
-          Reviews
+        <Menu.Item name='sitters' active={activeItem === 'sitters'} onClick={this.handleItemClick}>
+        <Link to='/sitters'>Sitters</Link>
         </Menu.Item>
 
         <Menu.Item
