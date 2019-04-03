@@ -1,0 +1,20 @@
+.login-container{
+    display: flex; 
+    height:100vh;
+    justify-content: center; 
+    align-items: center;
+    background: rgba(255, 255, 255, 0.226);
+
+}
+
+.login-flex {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 1rem; 
+}
+
+.login-header {
+    color: black;
+}
