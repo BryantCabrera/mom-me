@@ -6,9 +6,7 @@ import Login from '../Login/Login'
 class Landing extends Component {
     render() {
         return (
-            <div>
                 <Login/>
-            </div>
         )
     }
 }

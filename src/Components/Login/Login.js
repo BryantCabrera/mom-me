@@ -5,7 +5,6 @@ import './Login.css'
 class Login extends Component {
     render() {
         return (
-            <div>
                 <div className="login-container">
                         <form className="login-flex">
                             <h1 className="login-header">LOG-IN</h1>
@@ -21,7 +20,6 @@ class Login extends Component {
                             <button className="login-btn" type='submit'>Login</button>
                     </form>
                 </div>
-            </div>
         )
     }
 }
