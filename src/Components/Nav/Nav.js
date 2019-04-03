@@ -1,9 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Menu } from 'semantic-ui-react'
 
-const Navigation = () => {
-    <div>
+export default class Nav extends Component {
+  state = {}
 
-    </div>
- }
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
- export default Navigation
+  render() {
+    const { activeItem } = this.state
+
+    return (
+      <Menu>
+        <Menu.Item
+          name='editorials'
+          active={activeItem === 'editorials'}
+          onClick={this.handleItemClick}
+        >
+          Editorials
+        </Menu.Item>
+
+        <Menu.Item name='reviews' active={activeItem === 'reviews'} onClick={this.handleItemClick}>
+          Reviews
+        </Menu.Item>
+
+        <Menu.Item
+          name='upcomingEvents'
+          active={activeItem === 'upcomingEvents'}
+          onClick={this.handleItemClick}
+        >
+          Upcoming Events
+        </Menu.Item>
+      </Menu>
+    )
+  }
+}
