@@ -2,9 +2,17 @@ import React, { Component } from 'react'
 
 
 class Dashboard extends Component {
-    render(){
-        return(
-            <div>This is the dashboard</div>
+    render() {
+        console.log(this.props.loggedUser, 'hitting loggedUser from Dashboard')
+        return (
+            <div>
+                <div>DASHBOARD</div>
+                <div>{this.props.loggedUser.name}</div>
+                <div>{this.props.loggedUser.email}</div>
+                <img src={`${this.props.loggedUser.img}`}></img>
+                <button onClick={this.props.doDeleteUser}>DELETE USER</button>
+            </div>
+
         )
     }
 }

@@ -7,7 +7,6 @@ import "semantic-ui-css/semantic.min.css";
 import Sittersindex from './Components/Sittersindex/Sittersindex'
 import Register from './Components/Register/Register'
 import Login from './Components/Login/Login'
-import Survey from './Components/Survey/Survey'
 import Datepicker from './Components/Datepicker/Datepicker'
 import Dashboard from './Components/Dashboard/Dashboard';
 import FormComponent from './Components/FormComponent/FormComponent';
@@ -19,10 +18,10 @@ class App extends Component {
         loggedUser: {}
     }
 
-    doSetLoggedUser = (loggedUser) => {
-        console.log(loggedUser)
-        this.setState({ loggedUser })
-    }
+    // doSetLoggedUser = (loggedUser) => {
+    //     console.log(loggedUser)
+    //     this.setState({ loggedUser })
+    // }
 
     doLoginUser = async (user) => {
         try {
@@ -49,7 +48,7 @@ class App extends Component {
                     loggedUser: parsedResponse.data
                 });
 
-                this.props.history.push(`/form`);
+                this.props.history.push(`/dashboard`);
             } else {
                 this.setState({
                     loginError: parsedResponse.message
@@ -84,6 +83,26 @@ class App extends Component {
         }
     }
 
+    doDeleteUser = async () => {
+        try {
+            const deletedUser = await fetch(`${process.env.REACT_APP_API_URL}/moms/${this.state.loggedUser._id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+            if (!deletedUser.ok) {
+                throw Error(deletedUser.statusText);
+            }
+            const parsedDeletedResponse = await deletedUser.json();
+            this.setState({
+                loggedUser: {}
+            })
+            this.props.history.push('/')
+            console.log(parsedDeletedResponse, 'this is deleted user')
+        } catch (err) {
+            return err
+        }
+    }
+
     render() {
         return (
             <div>
@@ -91,12 +110,11 @@ class App extends Component {
                 <Switch>
                     <Route exact path={'/home'} component={() => <Register />} />
                     <Route exact path={'/sitters'} component={() => <Sittersindex />} />
-                    <Route exact path={'/login'} component={(...props) => <Login {...props} history={this.props.history} doLoginUser={this.doLoginUser}/>} />
+                    <Route exact path={'/login'} component={(...props) => <Login {...props} history={this.props.history} doLoginUser={this.doLoginUser} />} />
                     <Route exact path={'/'} component={() => <Landing />} />
-                    <Route exact path={'/survey'} component={() => <Survey />} />
                     <Route exact path={'/datepicker'} component={() => <Datepicker />} />
-                    <Route exact path={'/dashboard'} component={() => <Dashboard />} />
-                    <Route exact path={'/form'} component={() => <FormComponent/>} />
+                    <Route exact path={'/dashboard'} component={() => <Dashboard loggedUser={this.state.loggedUser} doDeleteUser={this.doDeleteUser}/>} />
+                    <Route exact path={'/form'} component={() => <FormComponent />} />
                 </Switch>
             </div>
         )
