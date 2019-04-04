@@ -6,12 +6,19 @@ import Nav from './Components/Nav/Nav'
 import "semantic-ui-css/semantic.min.css";
 import Sittersindex from './Components/Sittersindex/Sittersindex'
 import Register from './Components/Register/Register'
+import Survey from './Components/Survey/Survey'
+import Datepicker from './Components/Datepicker/Datepicker'
 
 
 
 class App extends Component {
     state = {
         loggedUser: {}
+    }
+
+    doSetLoggedUser = (loggedUser) => {
+      console.log(loggedUser)
+      this.setState({loggedUser})
     }
 
     doLoginUser = async (user) => {
@@ -51,13 +58,38 @@ class App extends Component {
         }
     }
 
+    doHandleLogout = async () => {
+      try {
+          const loginResponse = await fetch(`${process.env.REACT_APP_API_URL}/auth/logout`, {
+              method: 'GET',
+              credentials: 'include',
+              // body: JSON.stringify(this.state),
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          });
+
+          const parsedResponse = await loginResponse.json();
+          this.props.doSetCurrentUser({})
+          this.props.history.push("/");
+          console.log(parsedResponse, 'logged')
+
+      } catch (err) {
+          console.log(err)
+          console.log('hitting')
+      }
+  }
+
     render() {
         return (
             <div>
-                <Nav />
+                <Nav doHandleLogout={this.doHandleLogout}/>
                 <Switch>
                 <Route exact path={'/home'} component={ () => <Register/>} />
                 <Route exact path={'/sitters'} component={() => <Sittersindex />} />
+                <Route exact path={'/'} component={ () => <Landing/>} />
+                <Route exact path={'/survey'} component={ () => <Survey/>} />
+                <Route exact path={'/datepicker'} component= { () => <Datepicker/> } />
                 </Switch>
             </div>
         )

@@ -3,6 +3,9 @@ import {withRouter} from 'react-router-dom'
 
 class Register extends Component {
   state = {
+    email: '',
+    name: '',
+    password: ''
   };
 
   handleChange = e => {
@@ -37,7 +40,7 @@ class Register extends Component {
         const parsedResponse = await loginResponse.json()
 
         if (parsedResponse.message === 'Registration successful.') {
-            this.props.history.push('/sitters')
+            this.props.history.push('/survey')
         }
 
     } catch (err) {
@@ -48,7 +51,6 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <form>
           <form 
           className="login-flex" 
           onSubmit={this.handleSubmit}>
@@ -90,7 +92,6 @@ class Register extends Component {
               Login
             </button>
           </form>
-        </form>
       </div>
     );
   }
