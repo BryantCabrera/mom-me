@@ -10,6 +10,7 @@ import Login from './Components/Login/Login'
 import Survey from './Components/Survey/Survey'
 import Datepicker from './Components/Datepicker/Datepicker'
 import Dashboard from './Components/Dashboard/Dashboard';
+import FormComponent from './Components/FormComponent/FormComponent';
 
 
 
@@ -48,7 +49,7 @@ class App extends Component {
                     loggedUser: parsedResponse.data
                 });
 
-                this.props.history.push(`/dashboard`);
+                this.props.history.push(`/form`);
             } else {
                 this.setState({
                     loginError: parsedResponse.message
@@ -95,6 +96,7 @@ class App extends Component {
                     <Route exact path={'/survey'} component={() => <Survey />} />
                     <Route exact path={'/datepicker'} component={() => <Datepicker />} />
                     <Route exact path={'/dashboard'} component={() => <Dashboard />} />
+                    <Route exact path={'/form'} component={() => <FormComponent/>} />
                 </Switch>
             </div>
         )
