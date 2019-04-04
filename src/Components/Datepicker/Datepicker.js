@@ -12,10 +12,12 @@ class Datepicker extends Component {
   handleStartChange = startDate => {
     this.setState({ startDate });
     this.to.openCalendar();
+    console.log(this.state.startDate, 'this is startDate hiting')
   };
 
   handleEndChange = endDate => {
-    return this.setState({ endDate });
+    this.setState({ endDate });
+    console.log(this.state.endDate, 'this is endDate')
   };
 
   render() {
