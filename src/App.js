@@ -9,6 +9,7 @@ import Register from './Components/Register/Register'
 import Login from './Components/Login/Login'
 import Survey from './Components/Survey/Survey'
 import Datepicker from './Components/Datepicker/Datepicker'
+import Dashboard from './Components/Dashboard/Dashboard';
 
 
 
@@ -18,13 +19,13 @@ class App extends Component {
     }
 
     doSetLoggedUser = (loggedUser) => {
-      console.log(loggedUser)
-      this.setState({loggedUser})
+        console.log(loggedUser)
+        this.setState({ loggedUser })
     }
 
     doLoginUser = async (user) => {
         try {
-            const loginResponse = await fetch (
+            const loginResponse = await fetch(
                 `${process.env.REACT_APP_API_URL}/auth/login`,
                 {
                     method: "POST",
@@ -41,14 +42,13 @@ class App extends Component {
             }
 
             const parsedResponse = await loginResponse.json();
-
             if (parsedResponse.message === "login successful") {
                 //Resets this component's state if a use was successfully logged in
                 this.setState({
                     loggedUser: parsedResponse.data
                 });
 
-                this.props.history.push(`/sitters`);
+                this.props.history.push(`/dashboard`);
             } else {
                 this.setState({
                     loginError: parsedResponse.message
@@ -60,38 +60,41 @@ class App extends Component {
     }
 
     doHandleLogout = async () => {
-      try {
-          const loginResponse = await fetch(`${process.env.REACT_APP_API_URL}/auth/logout`, {
-              method: 'GET',
-              credentials: 'include',
-              // body: JSON.stringify(this.state),
-              headers: {
-                  'Content-Type': 'application/json'
-              }
-          });
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/logout`)
 
-          const parsedResponse = await loginResponse.json();
-          this.props.doSetCurrentUser({})
-          this.props.history.push("/");
-          console.log(parsedResponse, 'logged')
+            if (!response.ok) {
+                throw Error(response.statusText)
+            } else {
+                console.log(response);
+            }
 
-      } catch (err) {
-          console.log(err)
-          console.log('hitting')
-      }
-  }
+            const deletedSession = await response.json();
+            this.setState({
+                loggedUser: deletedSession.user || {}
+            })
+
+            this.props.history.push("/");
+            console.log(deletedSession, 'logged')
+
+        } catch (err) {
+            console.log(err)
+            console.log('hitting')
+        }
+    }
 
     render() {
         return (
             <div>
-                <Nav doHandleLogout={this.doHandleLogout}/>
+                <Nav doHandleLogout={this.doHandleLogout} />
                 <Switch>
-                <Route exact path={'/home'} component={() => <Register/>} />
-                <Route exact path={'/sitters'} component={() => <Sittersindex />} />
-                <Route exact path={'/login'} component={() => <Login/>} />
-                <Route exact path={'/'} component={ () => <Landing/>} />
-                <Route exact path={'/survey'} component={ () => <Survey/>} />
-                <Route exact path={'/datepicker'} component= { () => <Datepicker/> } />
+                    <Route exact path={'/home'} component={() => <Register />} />
+                    <Route exact path={'/sitters'} component={() => <Sittersindex />} />
+                    <Route exact path={'/login'} component={(...props) => <Login {...props} history={this.props.history} doLoginUser={this.doLoginUser}/>} />
+                    <Route exact path={'/'} component={() => <Landing />} />
+                    <Route exact path={'/survey'} component={() => <Survey />} />
+                    <Route exact path={'/datepicker'} component={() => <Datepicker />} />
+                    <Route exact path={'/dashboard'} component={() => <Dashboard />} />
                 </Switch>
             </div>
         )
