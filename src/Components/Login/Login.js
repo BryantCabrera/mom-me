@@ -24,6 +24,7 @@ class Login extends Component {
 
 
     render() {
+        console.log(this.props);
         return (
             <div className="login-container">
                 <form className="login-flex" onSubmit={this.doHandleSubmit}>

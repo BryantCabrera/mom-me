@@ -40,7 +40,7 @@ class Register extends Component {
         const parsedResponse = await loginResponse.json()
 
         if (parsedResponse.message === 'Registration successful.') {
-            this.props.history.push('/survey')
+            this.props.history.push('/form')
         }
 
     } catch (err) {
