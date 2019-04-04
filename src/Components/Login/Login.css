@@ -5,8 +5,8 @@
     height:100vh;
     justify-content: center; 
     align-items: center;
-    background: url("https://images.unsplash.com/photo-1551498800-17cbc39c85bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80") !important;
-    background-size: cover;
+    background: url("https://images.unsplash.com/photo-1533777419517-3e4017e2e15a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80") !important;
+    background-size: auto;
     /* background: rgba(255, 255, 255, 0.226); */
 
 }
