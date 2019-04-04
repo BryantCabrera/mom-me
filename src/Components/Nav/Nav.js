@@ -16,12 +16,16 @@ export default class Nav extends Component {
           name='home'
           active={activeItem === 'home'}
           onClick={this.handleItemClick}
-          href={`${process.env.REACT_APP_API_URL}/home`}
+          href={`/home`}
         >
         {/* <Link to='/home'>Home</Link> */}
         </Menu.Item>
 
-        <Menu.Item to='/sitters' name='sitters' active={activeItem === 'sitters'} onClick={this.handleItemClick}>
+        <Menu.Item to='/sitters' 
+          name='sitters' 
+          active={activeItem === 'sitters'} 
+          onClick={this.handleItemClick} 
+          href={`/sitters`}>
         {/* <Link to='/sitters'>Sitters</Link> */}
         </Menu.Item>
 
@@ -32,6 +36,14 @@ export default class Nav extends Component {
         >
           Upcoming Events
         </Menu.Item>
+
+        <Menu.Item to='/login' 
+          name='login' 
+          active={activeItem === 'login'} 
+          onClick={this.handleItemClick} 
+          href={`/login`}>
+        </Menu.Item>
+
       </Menu>
     )
   }
