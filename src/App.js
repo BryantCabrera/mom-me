@@ -6,6 +6,7 @@ import Nav from './Components/Nav/Nav'
 import "semantic-ui-css/semantic.min.css";
 import Sittersindex from './Components/Sittersindex/Sittersindex'
 import Register from './Components/Register/Register'
+import Login from './Components/Login/Login'
 import Survey from './Components/Survey/Survey'
 import Datepicker from './Components/Datepicker/Datepicker'
 
@@ -85,8 +86,9 @@ class App extends Component {
             <div>
                 <Nav doHandleLogout={this.doHandleLogout}/>
                 <Switch>
-                <Route exact path={'/home'} component={ () => <Register/>} />
+                <Route exact path={'/home'} component={() => <Register/>} />
                 <Route exact path={'/sitters'} component={() => <Sittersindex />} />
+                <Route exact path={'/login'} component={() => <Login/>} />
                 <Route exact path={'/'} component={ () => <Landing/>} />
                 <Route exact path={'/survey'} component={ () => <Survey/>} />
                 <Route exact path={'/datepicker'} component= { () => <Datepicker/> } />

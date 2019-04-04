@@ -10,41 +10,48 @@ export default class Nav extends Component {
     render() {
         const { activeItem } = this.state
 
-        return (
-            <Menu>
-                <Menu.Item
-                    name='home'
-                    active={activeItem === 'home'}
-                    onClick={this.handleItemClick}
-                    as={Link}
-                    to='/'
-                >
-                </Menu.Item>
+    return (
+      <Menu>
+        <Menu.Item
+          name='home'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick}
+          href={`/home`}
+        >
+        {/* <Link to='/home'>Home</Link> */}
+        </Menu.Item>
 
-                <Menu.Item
-                    as={Link}
-                    to='/sitters'
-                    name='sitters'
-                    active={activeItem === 'sitters'}
-                    onClick={this.handleItemClick}>
-                </Menu.Item>
+        <Menu.Item to='/sitters' 
+          name='sitters' 
+          active={activeItem === 'sitters'} 
+          onClick={this.handleItemClick} 
+          href={`/sitters`}>
+        {/* <Link to='/sitters'>Sitters</Link> */}
+        </Menu.Item>
 
-                <Menu.Item
-                    name='upcomingEvents'
-                    active={activeItem === 'upcomingEvents'}
-                    onClick={this.handleItemClick}
-                >
-                    Upcoming Events
-                </Menu.Item>
+        <Menu.Item
+          name='upcomingEvents'
+          active={activeItem === 'upcomingEvents'}
+          onClick={this.handleItemClick}
+        >
+          Upcoming Events
+        </Menu.Item>
 
-                <Menu.Item
-                    name='upcomingEvents'
-                    active={activeItem === 'upcomingEvents'}
-                    onClick={this.props.doHandleLogout}
-                >
-                    Log Out
-                </Menu.Item>
-            </Menu>
-        )
-    }
+        <Menu.Item to='/login' 
+          name='login' 
+          active={activeItem === 'login'} 
+          onClick={this.handleItemClick} 
+          href={`/login`}>
+        </Menu.Item>
+        
+         <Menu.Item
+            name='upcomingEvents'
+            active={activeItem === 'upcomingEvents'}
+            onClick={this.props.doHandleLogout}
+          >
+              Log Out
+          </Menu.Item>
+      </Menu>
+    )
+  }
 }
