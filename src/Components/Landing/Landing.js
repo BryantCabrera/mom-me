@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import "./Landing.css"
-import Login from '../Login/Login'
 
 
 class Landing extends Component {
     render() {
         return (
-                <Login/>
+            <div>THIS IS LANDING, HELLO : ) </div>
         )
     }
 }
 
-export default Landing
+export default withRouter(Landing)
