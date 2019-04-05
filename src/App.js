@@ -10,6 +10,7 @@ import Login from './Components/Login/Login'
 import Datepicker from './Components/Datepicker/Datepicker'
 import Dashboard from './Components/Dashboard/Dashboard';
 import FormComponent from './Components/FormComponent/FormComponent';
+import EditMom from './Components/EditMom/EditMom';
 
 
 
@@ -49,6 +50,7 @@ class App extends Component {
                 });
 
                 this.props.history.push(`/dashboard`);
+                console.log(parsedResponse,'logged in')
             } else {
                 this.setState({
                     loginError: parsedResponse.message
@@ -103,6 +105,34 @@ class App extends Component {
         }
     }
 
+    doEditMom = async (editMomInfo) => {
+        try {
+            console.log(editMomInfo, 'hitting edit mom')
+            const editedMom = await fetch(`${process.env.REACT_APP_API_URL}/moms/${this.state.loggedUser._id}`, {
+                method: 'PUT',
+                credentials: 'include',
+                body: JSON.stringify(editMomInfo),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!editedMom.ok) {
+                throw Error(editedMom.statusText);
+            }
+
+            const parsedResponse = await editedMom.json();
+            this.setState({
+                loggedUser: parsedResponse.data
+            });
+            this.props.history.push(`/dashboard`);
+            console.log(parsedResponse,'mom updated')
+
+        } catch (err) {
+            return err
+        }
+    }
+
     render() {
         return (
             <div>
@@ -115,6 +145,7 @@ class App extends Component {
                     <Route exact path={'/datepicker'} component={() => <Datepicker />} />
                     <Route exact path={'/dashboard'} component={() => <Dashboard loggedUser={this.state.loggedUser} doDeleteUser={this.doDeleteUser}/>} />
                     <Route exact path={'/form'} component={() => <FormComponent />} />
+                    <Route exact path={'/edit-profile'} component={() => <EditMom doEditMom={this.doEditMom} loggedUser={this.state.loggedUser}/>} />
                 </Switch>
             </div>
         )
