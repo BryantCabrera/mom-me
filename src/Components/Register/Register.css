@@ -1,10 +1,14 @@
 
+.logo {
+    height: 100%;
+    width: 100%;
+}
 
-.login-container{
+.register-container{
     align-content: center;
 }
 
-.login-flex {
+.register-flex {
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
@@ -12,13 +16,19 @@
     margin-bottom: 1rem; 
 }
 
-.login-header {
+.register-header {
     color: black;
     font-size: 50px;
     text-align: center;
 }
 
-#login-email {
+.register-line {
+    color: black;
+    font-size: 30px;
+    text-align: center;
+}
+
+#register-email {
     width: 250px;
     font-size: 30px;
     padding: 20px;
@@ -26,7 +36,15 @@
     border-radius: 25px;
 }
 
-#login-password {
+#register-name {
+    width: 250px;
+    font-size: 30px;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 25px;
+}
+
+#register-password {
     width: 250px;
     font-size: 30px;
     margin: 10px;
@@ -34,7 +52,7 @@
     border-radius: 25px;
 }
 
-.login-btn {
+.register-btn {
     width: 250px;
     font-size: 23px;
     background-color: skyblue;

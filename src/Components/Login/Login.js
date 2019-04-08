@@ -22,24 +22,22 @@ class Login extends Component {
         this.props.doLoginUser(this.state)
     }
 
-
-
     render() {
-        console.log(this.props, 'this is props from Login Component');
         return (
             <div className="login-container">
                 <form className="login-flex" onSubmit={this.doHandleSubmit}>
-                    <h1 className="login-header">LOG-IN</h1>
+                    <h1 className="login-header">MOM and ME</h1>
                     <label>
-                        <input id="login2" className="login-input" type='email' name='email' value={this.state.email} onChange={this.doHandleInput} placeholder="email" />
+                        <input id="login-email" className="login-input" type='email' name='email' value={this.state.email} onChange={this.doHandleInput} placeholder="email" />
                     </label>
                     <label>
-                        <input id="login3" className="login-input" type='password' name='password' value={this.state.password} onChange={this.doHandleInput} placeholder="password" />
+                        <input id="login-password" className="login-input" type='password' name='password' value={this.state.password} onChange={this.doHandleInput} placeholder="password" />
                     </label>
                     <button className="login-btn" type='submit'> Login </button>
                 </form>
             </div>
         )
+        
     }
 }
 
